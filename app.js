@@ -32,9 +32,11 @@ function updateScore() {
 
 function buildBoard() {
   playArea.scorer = document.createElement('span');
+  playArea.scorer.style ='font-size:1.5em';
+  playArea.scorer.style.margin = '10px 0px 20px 500px';
   playArea.scorer.innerHTML = 'Press Button to Start';
   playArea.stats.appendChild(playArea.scorer);
-  let rows = 4;
+    let rows = 4;
   let cols = 6;
   let cnt = 0;
   playArea.game.style.width = cols * 100 + cols * 2;

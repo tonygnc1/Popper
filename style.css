@@ -5,6 +5,10 @@
   text-align: center;
   background-color: blue;
   color: white;
+  margin: 10px 0px 0px 530px;
+  font-family: fantasy;
+  font-size: 1.5em;
+
 }
 
 .page {
@@ -35,6 +39,8 @@
 
 .game {
     border: 1px solid black;
+    width: 612px;
+    height: 408px;
 }
 
 .active {
@@ -45,6 +51,3 @@
   cursor: pointer;
 }
 
-.updateScore {
-  font-size: 1.5em;
-}
