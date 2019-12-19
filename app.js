@@ -25,9 +25,16 @@ function getData() {
       buildBoard();
     });
 }
+function updateScore() {
+  playArea.scorer.innerHTML = 'Score: ' + player.score + ' Lives: ' + player.items;
+
+}
+
 
 function buildBoard() {
-  console.log('ready');
+playArea.scorer = document.createElement('span');
+playArea.scorer.innerHTML = 'Press Button to Start';
+playArea.stats.appendChild(playArea.scorer);
   let rows = 4;
   let cols = 6;
   let cnt = 0;
@@ -64,15 +71,54 @@ function startGame() {
   console.log('Start');
   player.gameOver = false;
   startPop();
+  updateScore();
 }
 
 function randomUp() {
 const pops = document.querySelectorAll('.pop')
-return pops;
+const idx = Math.floor(Math.random()*pops.length);
+if(pops[idx].cnt == playArea.last){
+  return randomUp();
+}
+return pops[idx];
 
 }
 
 function startPop() {
     let newPop = randomUp();
     console.log(newPop);
+    newPop.classList.add('active');
+    newPop.addEventListener('click',hitPop);
+    const time = Math.floor(Math.random() * (1500) + 750);
+    const val = Math.floor(Math.random()* gameObj.length);
+
+newPop.old = newPop.innerText;
+newPop.v = gameObj[val].value;
+newPop.innerHTML = gameObj[val].icon + '<br>' + gameObj[val].value;
+playArea.inPlay = setTimeout(function() {
+  newPop.classList.remove('active');
+  newPop.removeEventListener('click', hitPop);
+  newPop.innerText =newPop.old;
+if(!player.gameOver) {
+  startPop();
+}
+},time);
+
+}
+
+function hitPop(e) {
+  console.log(e.target.cnt);
+  console.log(e.target.v);
+  let newPop = e.target;
+  player.score = player.score + newPop.v;
+  updateScore();
+  newPop.classList.remove('active');
+  newPop.removeEventListener('click', hitPop);
+  newPop.innerText = newPop.old;
+  clearTimeout(playArea.inPlay);
+  if(!player.gameOver) {
+    startPop();
+  }
+
+
 }

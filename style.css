@@ -36,3 +36,11 @@
 .game {
     border: 1px solid black;
 }
+
+.active {
+  border: 1px solid red;
+  background-color:aliceblue;
+  color: black;
+  box-shadow: 5px 5px #555;
+  cursor: pointer;
+}
