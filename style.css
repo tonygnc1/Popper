@@ -44,3 +44,7 @@
   box-shadow: 5px 5px #555;
   cursor: pointer;
 }
+
+.updateScore {
+  font-size: 1.5em;
+}
